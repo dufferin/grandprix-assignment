@@ -1789,6 +1789,8 @@ select:not([multiple]):not([size]){-webkit-appearance:none;appearance:none;backg
 .spg-note div>b{display:block}.spg-note small b{display:inline}
 .a2-cs{display:flex;flex-direction:column;gap:8px}.a2-cs-h{font-size:12px;color:#6B7280;margin-top:4px}.a2-cb input{width:16px;height:16px;margin-top:3px;flex:none;accent-color:#111}.a2-cb small{color:#9CA3AF}
 .nopf .pfo,.nopf a.lx-card[href^="#/platform"]{display:none!important}html:not(.nopf) .pfx{display:none}
+.asg #shopsec{display:none!important}
+.a2-pv{background:#111827;color:#E5E7EB;font-size:13px;padding:10px 16px;text-align:center}.a2-pv a{color:#D1FF03;text-decoration:underline;margin-left:6px}
 </style>
 </head>
 <body>
@@ -1800,7 +1802,8 @@ select:not([multiple]):not([size]){-webkit-appearance:none;appearance:none;backg
 
 <script>
 /* ซ่อน Platform Console บนเว็บที่เผยแพร่ (GitHub Pages) หรือเมื่อเปิดด้วย ?nopf */
-const NO_PF=false, ASG=true;   // ฉบับ grandprix-assignment: มี Platform Console · ไม่มี Marketplace / หน้า event · หลังบ้านเหลือ ภาพรวม · ลูกค้า · แพ็กเกจ
+const NO_PF=false, ASG=true;
+document.documentElement.classList.add('asg');   // ฉบับ grandprix-assignment: มี Platform Console · ไม่มี Marketplace / หน้า event · หลังบ้านเหลือ ภาพรวม · ลูกค้า · แพ็กเกจ
 if(NO_PF)document.documentElement.classList.add('nopf');
 
 /* ============================================================
@@ -1915,7 +1918,7 @@ const KIND={reg:'ค่าสมัคร',ticket:'ตั๋ว / บัตร',
    SHARED PIECES
    ============================================================ */
 function demoBar(active){
-  const L=[['#/','สารบัญ demo'],['#/account?from=me','Login กลาง'],['#/me','บัญชีของฉัน'],['#/line','LINE OA'],['#/admin','Back-office'],['#/platform','Platform Console']];
+  const L=[['#/','สารบัญ demo'],['#/tde','TDE'],['#/souped-up','Souped Up'],['#/runbike','Runbike'],['#/account?from=me&preview=1','Login กลาง'],['#/me','บัญชีของฉัน'],['#/line','LINE OA'],['#/admin','Back-office'],['#/platform','Platform Console']];
   $('#demobar').innerHTML=`<b>GRANDPRIX DEMO</b><span class="tag">v2 · Option A + แอพกลาง</span>
   ${L.map(([h,t])=>`<a href="${h}" class="${active===h?'on':''}">${t}</a>`).join('')}
   <span class="sp"></span>
@@ -2102,7 +2105,7 @@ function pageLauncher(){
     <a class="lx-card" href="#/souped-up"><div class="top" style="background:#0a0b0d"><img src="assets/logo-main.png" alt="Souped Up"></div><div class="bd"><h3>Souped Up Grand Prix</h3><p>เลือกบริการ → สรุปยอดค่าสมัคร + ของที่ระลึก</p></div></a>
     <a class="lx-card" href="#/runbike"><div class="top" style="background:#001529"><img src="assets/gprc-logo.png" alt="GPRC"></div><div class="bd"><h3>GPRC Runbike</h3><p>ประวัติการลงทะเบียน → สรุปยอด + ของที่ระลึก</p></div></a>
     <a class="lx-card" href="#/store"><div class="top" style="background:#fff;color:#111"><div class="rl-logo" style="font-size:22px">ร้านค้ากรังด์ปรีซ์</div></div><div class="bd"><h3>ร้านค้า (หน้ารวมสินค้า)</h3><p><b style="color:#d4f53c">ไม่ใช่เว็บแยก</b> — เป็นหน้าหนึ่งของแพลตฟอร์มเดียวกัน อยู่ใต้ shop.grandprix.co.th · สินค้าชุดนี้ซื้อได้จากหน้าแรกและหน้าสรุปยอดของแต่ละงานอยู่แล้ว</p></div></a>
-    <a class="lx-card" href="#/account?from=souped-up"><div class="top" style="background:#15171c"><div class="gpa-brand"><span class="dot">G</span>GRANDPRIX ACCOUNT</div></div><div class="bd"><h3>หน้า login กลาง</h3><p>login เดียว มีโลโกทุกงาน · สมัคร + OTP ทาง email</p></div></a>
+    <a class="lx-card" href="#/account?from=souped-up&preview=1"><div class="top" style="background:#15171c"><div class="gpa-brand"><span class="dot">G</span>GRANDPRIX ACCOUNT</div></div><div class="bd"><h3>หน้า login กลาง</h3><p>login เดียว มีโลโกทุกงาน · สมัคร + OTP ทาง email</p></div></a>
     <a class="lx-card" href="#/me"><div class="top" style="background:#0e0f12"><div class="gpa-brand"><span class="dot">G</span>บัญชีของฉัน</div></div><div class="bd"><h3>บัญชีของฉัน</h3><p>ข้อมูลส่วนตัว · ที่อยู่ & ใบกำกับภาษี · กิจกรรมทุกงาน (ไม่มีหน้า portal / ไม่มี logout)</p></div></a>
     <a class="lx-card" href="#/admin"><div class="top" style="background:#0f172a"><div class="gpa-brand" style="color:#fff">BACK-OFFICE</div></div><div class="bd"><h3>Back-office</h3><p>CRM + จัดอันดับลูกค้า, สินค้า/ตัวเลือก, โค้ดส่วนลด<br><b style="color:#d4f53c">v2:</b> กลุ่มลูกค้า · แคมเปญ · ระดับสมาชิก · ยอดใช้งาน</p></div></a>
     <a class="lx-card" href="#/admin/views?obj=person"><div class="top" style="background:#0f172a"><div class="gpa-brand" style="color:#fff"><span class="dot" style="background:#fff;color:#0f172a">V</span>VIEW ENGINE</div></div><div class="bd"><h3>View Engine <b style="color:#d4f53c;font-size:12px">ใหม่</b></h3><p>อยู่ใน Back-office — มุมมองข้อมูลที่ผู้ใช้ตั้งเองได้: ตาราง · Kanban · ปฏิทิน · แกลเลอรี · ฟิลเตอร์ · จัดกลุ่ม · เลือกคอลัมน์ · แก้ค่าในตาราง · บันทึกและแชร์มุมมอง<br>ใช้ข้อมูลชุดเดียวกับหน้า CRM</p></div></a>
@@ -2147,7 +2150,7 @@ function pageAccount(q){
   const to=q.to||'';
   const src={tde:{n:'TDE Online Ticket',b:'TDE',c:'#FFE600'},'souped-up':{n:'Souped Up Grand Prix 2026',b:'SU',c:'#6FFFE8'},runbike:{n:'GPRC Runbike',b:'RB',c:'#FF4D4F'},store:{n:'Grandprix Marketplace',b:'MK',c:'#fff'},admin:{n:'Back-office',b:'BO',c:'#fff'},me:{n:'บัญชีของฉัน',b:'G',c:'#D1FF03'}}[from]||{n:'Grandprix',b:'G',c:'#D1FF03'};
   const back=dest(from,to);
-  if(S.user) { setTimeout(()=>go(back),0); return '' }
+  if(S.user&&!q.preview) { setTimeout(()=>go(back),0); return '' }   // มาจาก Sign In ของงาน = SSO พากลับเลย · ?preview=1 = เปิดดูหน้า login จากสารบัญ demo
   const isLine=gpaStep==='line'||gpaStep==='lineinfo';
   const fromBox=from!=='me'?`<div class="a2-from"><span class="b" style="color:${src.c}">${src.b}</span><span>กำลังเข้าสู่ <b>${esc(src.n)}</b> ด้วย Grandprix Account</span></div>`:'';
   const ck='<span class="a2-ck">✓</span>';
@@ -2215,7 +2218,8 @@ function pageAccount(q){
     <div class="a2-g2"><label class="a2-f"><span>ประเทศ</span><select><option>ไทย</option><option>อื่น ๆ</option></select></label><label class="a2-f"><span>รหัสผ่าน</span><input type="password" placeholder="อย่างน้อย 8 ตัวอักษร"></label></div>
     ${consentBox()}
     <button class="a2-btn" onclick="startOtp()">สมัครสมาชิก (ยืนยันทาง email)</button>`}`;
-  return `<div class="a2">${left}
+  const pv=S.user&&q.preview?`<div class="a2-pv">ตอนนี้ login อยู่แล้วในชื่อ <b>${esc(S.user.name)}</b> — หน้านี้เปิดให้ดูหน้าตา login กลาง · <a href="#/me">ไปบัญชีของฉัน →</a></div>`:'';
+  return pv+`<div class="a2">${left}
   <div class="a2-right"><div class="a2-form">${form}
     ${from==='me'||isLine?'':`<a class="a2-back" href="${back}">← กลับ</a>`}
   </div></div></div>`;
@@ -2289,7 +2293,7 @@ function pageSU(){
     <a href="#/souped-up"><img src="assets/logo-main.png" alt="Souped Up Grand Prix 2026"></a>
     <nav class="links"><a class="on" href="#/souped-up">Home</a><a href="javascript:needLogin('souped-up')&&toast('หน้า History (เดิม)')">History</a><a href="#/store?event=SOUPED_UP">Merch</a></nav>
     <span class="sp"></span><span class="su-lang"><span>TH</span><span class="on">EN</span></span>
-    ${chip||`<a class="su-btn" style="padding:7px 14px;font-size:14px" href="#/account?from=souped-up">Sign In</a>`}
+    ${chip||`<a class="su-btn" style="padding:7px 14px;font-size:14px" href="#/account?from=souped-up&preview=1">Sign In</a>`}
   </div></header>
   ${ssoBanner('souped-up')}
   ${closedNote('SOUPED_UP')}
@@ -2395,20 +2399,21 @@ function sumShell(ev,inner){
     ${chip||loginBtn('runbike','rb-btn')}</div></header><main class="rb-main">${inner}</main></div>`;
 }
 function closedBox(ev){
-  const home='#/store?event='+ev;
+  const home=ASG?'#/'+EVENTS[ev].route:'#/store?event='+ev;
   clearTimeout(redirT);
   redirT=setTimeout(()=>{if(S.closed[ev]&&parse().path==='/summary')go(home)},4500);
   return `<div class="closed-box"><div class="ic">🔒</div>
   <h1 style="margin:10px 0 6px;font-size:26px">ปิด${ev==='TDE'?'การขายบัตร':'รับสมัคร'}รอบนี้แล้ว</h1>
-  <p style="opacity:.75;line-height:1.8">${EVENTS[ev].name} ปิดรอบนี้แล้ว — แต่หน้าเว็บงานยังเปิดอยู่ และของที่ระลึกยังสั่งซื้อได้จากหน้าแรกของงาน<br>กำลังพาไปร้านของที่ระลึก ${EVENTS[ev].short}…</p>
+  <p style="opacity:.75;line-height:1.8">${EVENTS[ev].name} ปิดรอบนี้แล้ว — แต่หน้าเว็บงานยังเปิดอยู่ และของที่ระลึกยังสั่งซื้อได้จากหน้าแรกของงาน<br>${ASG?'กำลังพากลับหน้าแรก '+EVENTS[ev].short:'กำลังพาไปร้านของที่ระลึก '+EVENTS[ev].short}…</p>
   <p style="font-size:13px;color:${ev==='RUNBIKE'?'#dc2626':ev==='TDE'?'#ffe600':'#6FFFE8'};margin:4px 0 0">กำลังพาไปร้านของที่ระลึก ${EVENTS[ev].short}…</p>
   <div style="display:flex;gap:10px;justify-content:center;margin-top:18px;flex-wrap:wrap">
-    <a class="rl-btn" href="${home}">ไปร้านของที่ระลึก ${EVENTS[ev].short} →</a>
+    <a class="rl-btn" href="${home}">${ASG?'กลับหน้าแรก':'ไปร้านของที่ระลึก'} ${EVENTS[ev].short} →</a>
     <button class="rl-btn" onclick="S.closed['${ev}']=false;save();render()">จำลอง: เปิดรับสมัครอีกครั้ง</button></div>
-  <p style="font-size:12px;opacity:.6;margin-top:16px">งานที่ปิดแล้ว → ระบบพาไปหน้าร้านของงานนั้นใน Marketplace</p></div>`;
+  <p style="font-size:12px;opacity:.6;margin-top:16px">${ASG?'งานที่ปิดแล้ว → กลับหน้าแรกของงาน':'งานที่ปิดแล้ว → ระบบพาไปหน้าร้านของงานนั้นใน Marketplace'}</p></div>`;
 }
 function pageSummary(q){
   const ev=EVITEMS[q.event]?q.event:'SOUPED_UP';
+  if(ASG){if(S.addon&&S.addon[ev]&&S.addon[ev].length){S.addon[ev]=[];save()}sumShip='pickup'}
   const item=EVITEMS[ev][q.item]?q.item:Object.keys(EVITEMS[ev])[0];
   if(q.done) return sumShell(ev,sumDone(ev,q.done));
   if(S.closed[ev]) return sumShell(ev,closedBox(ev));
@@ -2425,9 +2430,9 @@ function pageSummary(q){
   <div class="evsim">จำลองสถานะงาน:
     <button class="${!S.closed[ev]?'':''}" style="${!S.closed[ev]?'background:#22c55e;color:#04220f;border-color:#22c55e':''}" onclick="S.closed['${ev}']=false;save();render()">เปิดรับสมัคร</button>
     <button onclick="S.closed['${ev}']=true;save();render()">ปิดรับสมัครแล้ว</button>
-    <span>· ถ้าปิด → ระบบพาไป marketplace อัตโนมัติ</span></div>
+    <span>· ถ้าปิด → ${ASG?'แสดงหน้าแจ้งปิดรับสมัคร แล้วพากลับหน้าแรกของงาน':'ระบบพาไป marketplace อัตโนมัติ'}</span></div>
   <h1 style="margin:0 0 4px;font-size:28px">สรุปรายการ & ชำระเงิน</h1>
-  <p style="opacity:.72;margin:0 0 20px">${EVENTS[ev].name} · ชำระค่าสมัคร / บัตร พร้อมของที่ระลึกในบิลเดียว</p>
+  <p style="opacity:.72;margin:0 0 20px">${EVENTS[ev].name} · ชำระค่าสมัคร / บัตร${ASG?'':' พร้อมของที่ระลึกในบิลเดียว'}</p>
   <div class="sum-grid"><div>
     <div class="sum-box"><h3>รายการหลัก</h3><p class="cap">มาจากระบบ ${evShort(ev)} (ราคาเป็นตัวอย่าง)</p>
       <div class="sum-line"><div><b>${t.base.t}</b><small>${t.base.sub}</small></div><b>${fmt(t.base.price)}</b></div>
@@ -2435,12 +2440,12 @@ function pageSummary(q){
       <div class="sum-line"><div><b>ผู้สมัคร</b><small>${esc(S.user.email)} · ${esc(S.user.mobile)}</small></div><span style="opacity:.8">${esc(S.user.name)}</span></div>
       <div class="sum-line"><span style="opacity:.8">เปลี่ยนรายการ</span><a href="#/${EVENTS[ev].route}" style="text-decoration:underline">← กลับไปเลือกใหม่</a></div>
     </div>
-    <div class="sum-box"><h3>เพิ่มของที่ระลึก (add-on จาก marketplace)</h3>
+    ${ASG?'':`<div class="sum-box"><h3>เพิ่มของที่ระลึก (add-on จาก marketplace)</h3>
       <p class="cap">สินค้าชุดเดียวกับหน้ารวมสินค้า — ราคา / stock ที่เดียวกัน · สินค้าที่มีตัวเลือกจะให้เลือกไซส์ในป๊อปอัป</p>
       <div class="addon">${list.map(p=>{const n=qtyOf(p.id);return `<div class="it"><img src="${p.img}" loading="lazy" alt=""><div class="p">${esc(p.name)}<b>${fmt(p.price)}</b>
         <button class="add ${n?'on':''}" onclick="openOpt('${p.id}','${ev}','addon')">${n?'✓ '+addonLabel(ev,p.id):(p.opt?'เลือก'+(p.optName||'ไซส์'):'+ เพิ่ม')}</button></div></div>`}).join('')}</div>
       <p style="margin:14px 0 0;font-size:13px"><a href="#/store?event=${ev}" style="text-decoration:underline">ดูสินค้าทั้งหมดใน marketplace →</a></p>
-    </div>
+    </div>`}
     ${adds.length?`<div class="sum-box"><h3>ของที่ระลึกที่เลือก</h3><p class="cap">แก้จำนวนหรือลบได้ก่อนชำระเงิน</p>
       ${adds.map((x,i)=>{const p=P(x.id);return `<div class="sum-line">
         <div style="display:flex;gap:12px;align-items:center"><img src="${p.img}" alt="" style="width:48px;height:48px;border-radius:10px;object-fit:cover;background:#fff">
@@ -2448,22 +2453,22 @@ function pageSummary(q){
         <div style="display:flex;gap:12px;align-items:center"><div class="qty" style="border-color:rgba(148,163,184,.4)"><button onclick="addonQty('${ev}',${i},-1)">−</button><span>${x.qty}</span><button onclick="addonQty('${ev}',${i},1)">+</button></div>
           <b style="min-width:70px;text-align:right">${fmt(p.price*x.qty)}</b><button style="font-size:12px;opacity:.7" onclick="S.addon['${ev}'].splice(${i},1);save();render()">ลบ</button></div></div>`}).join('')}
     </div>`:''}
-    <div class="sum-box"><h3>วิธีรับของ</h3><p class="cap">ค่าสมัคร / บัตร ใช้ e-ticket ทาง email และ LINE · ใช้กับของที่ระลึก</p>
+    ${ASG?'':`<div class="sum-box"><h3>วิธีรับของ</h3><p class="cap">ค่าสมัคร / บัตร ใช้ e-ticket ทาง email และ LINE · ใช้กับของที่ระลึก</p>
       <div class="ship-opts">
         <button class="ship-opt ${sumShip==='pickup'?'on':''}" onclick="sumShip='pickup';render()"><i></i><span><b>รับที่จุด check-in วันงาน</b><small>ฟรี</small></span></button>
         <button class="ship-opt ${sumShip==='deliver'?'on':''}" onclick="sumShip='deliver';render()"><i></i><span><b>จัดส่ง</b><small>฿60 · ฟรีเมื่อซื้อครบ ฿1,500</small></span></button>
       </div>
       ${sumShip==='deliver'&&adds.length?`<div class="sum-addr">${addrBox('sum')}</div>`:''}
-    </div>
+    </div>`}
   </div>
   <div class="sum-box sum-tot"><h3>สรุปยอด</h3>
     <div class="row"><span>${KIND[t.base.kind]}</span><span>${fmt(t.base.price)}</span></div>
     ${t.dep?`<div class="row"><span>มัดจำ</span><span>${fmt(t.dep)}</span></div>`:''}
-    <div class="row"><span>ของที่ระลึก (${adds.reduce((a,x)=>a+x.qty,0)} ชิ้น)</span><span>${fmt(t.merch)}</span></div>
-    <div class="row"><span>ค่าจัดส่ง</span><span>${t.shipFee?fmt(t.shipFee):'ฟรี'}</span></div>
+    ${ASG?'':`<div class="row"><span>ของที่ระลึก (${adds.reduce((a,x)=>a+x.qty,0)} ชิ้น)</span><span>${fmt(t.merch)}</span></div>
+    <div class="row"><span>ค่าจัดส่ง</span><span>${t.shipFee?fmt(t.shipFee):'ฟรี'}</span></div>`}
     <div class="row t"><span>ยอดชำระ</span><span>${fmt(t.total)}</span></div>
     <a class="sum-pay" style="background:${bg};color:${fg}" href="#/summary?event=${ev}&item=${item}&pay=1">ชำระเงินผ่าน BEAM</a>
-    <p style="font-size:12px;opacity:.65;margin:10px 0 0;line-height:1.7">จ่ายครั้งเดียว = 1 order · ${t.base.kind==='reg'?'ค่าสมัคร':'บัตร'} + ของที่ระลึกในบิลเดียว</p>
+    <p style="font-size:12px;opacity:.65;margin:10px 0 0;line-height:1.7">${ASG?'ชำระแล้วระบบบันทึกเข้า CRM และส่ง e-ticket ทางอีเมล / LINE':`จ่ายครั้งเดียว = 1 order · ${t.base.kind==='reg'?'ค่าสมัคร':'บัตร'} + ของที่ระลึกในบิลเดียว`}</p>
   </div></div>
   <div class="m-paybar"><div><small>ยอดชำระ</small><b>${fmt(t.total)}</b></div><a style="background:${bg};color:${fg}" href="#/summary?event=${ev}&item=${item}&pay=1">ชำระเงิน</a></div>`);
 }
@@ -4816,7 +4821,7 @@ let lastPath=null;
    มี: Platform Console · Login กลาง · บัญชีของฉัน · LINE OA · Back-office (ภาพรวม · ลูกค้า (CRM) · แพ็กเกจ)
    ไม่มี: Marketplace · หน้าเว็บของแต่ละ event · ร้านค้า / การตลาดในหลังบ้าน
    ============================================================ */
-const ASG_OK=['/','/guide','/me','/account','/line','/platform',/^\/platform\/t\//,'/admin','/admin/customers','/admin/segments','/admin/billing','/admin/views','/admin/top','/admin/top-spender'];
+const ASG_OK=['/','/guide','/me','/account','/line','/tde','/souped-up','/runbike','/summary','/platform',/^\/platform\/t\//,'/admin','/admin/customers','/admin/segments','/admin/billing','/admin/views','/admin/top','/admin/top-spender'];
 function asgOK(h){const p=(h||'').replace(/^#/,'').split('?')[0]||'/';return ASG_OK.some(r=>r instanceof RegExp?r.test(p):r===p)}
 function render(){
   const {path,q}=parse();
@@ -4907,19 +4912,25 @@ function pageAdminBilling(){
 function pageLauncher(){
   return `<div class="lx"><div class="in">
   <h1>Grandprix Assignment <span style="font-size:15px;color:#d4f53c;border:1px solid #333;border-radius:99px;padding:3px 12px;vertical-align:middle">Platform + CRM</span></h1>
-  <p class="lead">ขอบเขตงาน: <b>Platform Console</b> (แอพกลาง multi-tenant) · <b>Login กลาง</b> บัญชีเดียวทุกงาน · <b>บัญชีของฉัน</b> · <b>LINE OA</b> · <b>Back-office</b> เฉพาะ ภาพรวม · ลูกค้า (CRM) · แพ็กเกจ
+  <p class="lead">ขอบเขตงาน: <b>Platform Console</b> (แอพกลาง multi-tenant) · หน้าเว็บของแต่ละงาน (ไม่มีร้านค้า) · <b>Login กลาง</b> บัญชีเดียวทุกงาน · <b>บัญชีของฉัน</b> · <b>LINE OA</b> · <b>Back-office</b> เฉพาะ ภาพรวม · ลูกค้า (CRM) · แพ็กเกจ
   <br><b style="color:#d4f53c">หน้านี้เป็นสารบัญของ demo เท่านั้น ไม่ใช่หน้าของระบบจริง · ข้อมูลทั้งหมดเป็นตัวอย่าง</b></p>
   <div class="lx-grid">
+    <a class="lx-card" href="#/tde"><div class="top" style="background:#050507"><img src="${EVENTS.TDE.logo}" alt="TDE"></div><div class="bd"><h3>TDE — Online Ticket</h3><p>Sign In → login กลาง · เลือกบัตร → สรุปยอด → ชำระ</p></div></a>
+    <a class="lx-card" href="#/souped-up"><div class="top" style="background:#0a0b0d"><img src="assets/logo-main.png" alt="Souped Up"></div><div class="bd"><h3>Souped Up Grand Prix</h3><p>Sign In → login กลาง · สมัครแข่ง → สรุปยอด → ชำระ</p></div></a>
+    <a class="lx-card" href="#/runbike"><div class="top" style="background:#001529"><img src="assets/gprc-logo.png" alt="GPRC"></div><div class="bd"><h3>GPRC Runbike</h3><p>login แล้วเห็นประวัติการลงทะเบียน · สมัครรายการใหม่</p></div></a>
     <a class="lx-card" href="#/platform"><div class="top" style="background:#0b1020"><div class="gpa-brand" style="color:#5EF2C8"><span class="dot" style="background:#5EF2C8">P</span>PLATFORM CONSOLE</div></div><div class="bd"><h3>Platform Console</h3><p>ผู้ให้บริการดูลูกค้า (tenant) ทุกราย · แพ็ก · โมดูล · ค่าแพ็กต่อปี</p></div></a>
-    <a class="lx-card" href="#/account?from=me"><div class="top" style="background:#15171c"><div class="gpa-brand"><span class="dot">G</span>GRANDPRIX ACCOUNT</div></div><div class="bd"><h3>Login กลาง</h3><p>สมัคร / เข้าสู่ระบบด้วย LINE หรืออีเมล + OTP · ขอความยินยอมแยกวัตถุประสงค์</p></div></a>
+    <a class="lx-card" href="#/account?from=me&preview=1"><div class="top" style="background:#15171c"><div class="gpa-brand"><span class="dot">G</span>GRANDPRIX ACCOUNT</div></div><div class="bd"><h3>Login กลาง</h3><p>สมัคร / เข้าสู่ระบบด้วย LINE หรืออีเมล + OTP · ขอความยินยอมแยกวัตถุประสงค์</p></div></a>
     <a class="lx-card" href="#/me"><div class="top" style="background:#0e0f12"><div class="gpa-brand"><span class="dot">G</span>บัญชีของฉัน</div></div><div class="bd"><h3>บัญชีของฉัน</h3><p>ข้อมูลส่วนตัว · ที่อยู่ & ใบกำกับภาษี · กิจกรรมรวมทุกงาน</p></div></a>
     <a class="lx-card" href="#/line"><div class="top" style="background:#06C755"><div class="gpa-brand" style="color:#fff"><span class="dot" style="background:#fff;color:#06C755">L</span>LINE OA @grandprix</div></div><div class="bd"><h3>LINE OA (จำลองแชท)</h3><p>rich menu · เชื่อมบัญชี · ตั๋ว QR · แจ้งสถานะ</p></div></a>
     <a class="lx-card" href="#/admin"><div class="top" style="background:#0f172a"><div class="gpa-brand" style="color:#fff">BACK-OFFICE</div></div><div class="bd"><h3>Back-office</h3><p>ภาพรวม · ลูกค้า (CRM) · กลุ่มลูกค้า · แพ็กเกจ</p></div></a>
     <a class="lx-card" href="#/admin/views?obj=person"><div class="top" style="background:#0f172a"><div class="gpa-brand" style="color:#fff"><span class="dot" style="background:#fff;color:#0f172a">V</span>VIEW ENGINE</div></div><div class="bd"><h3>มุมมองลูกค้า</h3><p>ตาราง / Kanban / ปฏิทิน / แกลเลอรี · กรอง · บันทึกมุมมอง</p></div></a>
   </div>
   <div class="lx-steps"><b>ลองเล่นตามลำดับนี้</b><ol>
+    <li>เปิด <a href="#/souped-up" style="text-decoration:underline">Souped Up</a> → กด <code>Sign In</code> → ไปหน้า <b>login กลาง</b> (มีโลโกทุกงาน) → สมัคร / เข้าสู่ระบบ → กลับมาที่เว็บเดิม</li>
+    <li>สลับไป <a href="#/tde" style="text-decoration:underline">TDE</a> หรือ <a href="#/runbike" style="text-decoration:underline">Runbike</a> → <b>login อยู่แล้ว ไม่ต้องกรอกซ้ำ</b> (SSO)</li>
+    <li>ที่ Souped Up กด <b>สมัครเข้าร่วมการแข่งขัน</b> → หน้าสรุปยอด → ชำระ (จำลอง BEAM) → รายการเข้า CRM และบัญชีของฉัน</li>
     <li>เปิด <a href="#/platform" style="text-decoration:underline">Platform Console</a> → เห็นลูกค้า 3 ราย · คลิกกรังด์ปรีซ์ → ดูแบรนด์ โดเมน LINE OA · สลับแพ็ก Basic / Plus · เปิดปิดโมดูล</li>
-    <li>เปิด <a href="#/account?from=me" style="text-decoration:underline">Login กลาง</a> → สมัครด้วยอีเมลหรือ LINE → ความยินยอมแยก 3 ข้อ → เข้า <b>บัญชีของฉัน</b></li>
+    <li>เปิด <a href="#/account?from=me&preview=1" style="text-decoration:underline">Login กลาง</a> → สมัครด้วยอีเมลหรือ LINE → ความยินยอมแยก 3 ข้อ → เข้า <b>บัญชีของฉัน</b></li>
     <li>ดู <a href="#/line" style="text-decoration:underline">LINE OA</a> → เชื่อมบัญชี · rich menu</li>
     <li><a href="#/admin" style="text-decoration:underline">Back-office › ภาพรวม</a> → ฐานลูกค้ารวม · แยกตามงาน · ความยินยอม · ระดับสมาชิก</li>
     <li><a href="#/admin/customers" style="text-decoration:underline">Back-office › ลูกค้า</a> → สลับมุมมอง · Top spender · กดชื่อ → <b>Customer 360</b> · ตั้งระดับสมาชิกรายคน / หลายคน</li>
